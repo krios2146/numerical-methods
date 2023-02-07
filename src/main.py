@@ -1,43 +1,30 @@
-import math
+def choose_practice():
+    print()
+    print("Choose the practice to run: ")
+    print("(1) - Practice 2-4   : Solving algebraic and transcendental equations by numerical methods")
+    print("(2) - Practice 5     : Solving systems of linear equations using approximate methods. Iteration method")
+    print("(3) - Practice 6     : Solving systems of linear equations using approximate methods. The Seidel Method")
+    print("(4) - Practice 7-8   : Lagrange interpolation formulas. Estimating the error interpolation of a function")
+    print("(5) - Practice 9-11  : Calculating the integral of a function using numerical methods")
+    print("(6) - Practice 12    : Numerical differentiation of a function given in table form")
+    print("(7) - Practice 13-15 : Applying numerical methods to solve differential equations")
+    print("(0) - Quit")
 
-start_root_isolation_boundary = 2
-end_root_isolation_boundary = 3
+    answer = input()
+    if answer == "0":
+        return None
 
-calculation_accuracy = 0.0001
+    while not is_valid_answer(answer):
+        print("You should enter number between 0 and 7")
+        answer = input()
 
 
-def calculate_y_value(x):
-    return math.log(x) - math.pow(x, 2) + 5
-
-
-def bisection_method(a, b):
-    i = 0
-    root = 0
-
-    while abs(a - b) >= calculation_accuracy:
-        value_a = calculate_y_value(a)
-        value_b = calculate_y_value(b)
-
-        if value_a * value_b > 0:
-            return
-
-        m = (a + b) / 2
-
-        value_m = calculate_y_value(m)
-
-        if value_a * value_m < 0:
-            b = m
-
-        if value_m * value_b < 0:
-            a = m
-
-        i += 1
-        root = value_m
-        print(root)
-
-    return root
+def is_valid_answer(answer):
+    if len(answer) == 1 and answer.isdigit() and 1 <= int(answer) <= 7:
+        return True
+    else:
+        return False
 
 
 if __name__ == '__main__':
-    result = bisection_method(start_root_isolation_boundary, end_root_isolation_boundary)
-    print(result)
+    choose_practice()
