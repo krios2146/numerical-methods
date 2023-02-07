@@ -5,3 +5,11 @@ def is_valid_comma_separated_list_of_numbers(input_list):
         return True
     except ValueError:
         return False
+
+
+def is_valid_number(input_number):
+    try:
+        float(input_number)
+        return True
+    except ValueError:
+        return False
