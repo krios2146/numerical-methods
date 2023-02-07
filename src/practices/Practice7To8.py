@@ -1,40 +1,45 @@
 import math
 
-from util.validation import is_valid_comma_separated_list_of_numbers
+from util.input import *
 
 
 class Practice7To8:
     pow_numerator = 0
     pow_denominator = 0
-    xi = [0]
+    x = [0]
     a = 0
 
     def initiate_practice(self):
-        print("Enter the xi values separated by comma: ")
-        xi_input = input()
+        print("Enter the numerator of a degree: ")
+        self.pow_numerator = ask_number()
 
-        while not is_valid_comma_separated_list_of_numbers(xi_input):
-            print("Invalid input string. Please enter a comma-separated list of numbers: ")
-            xi_input = input()
+        print("Enter the denominator of a degree: ")
+        self.pow_denominator = ask_number()
 
-        self.xi = [float(num) for num in xi_input.split(',')]
+        print("Enter the x values separated by comma: ")
+        self.x = ask_comma_separated_list_of_numbers()
 
-    def calculate_polynom(self, x, y, x_number):
-        polynom = 0
+        print("Enter the a value: ")
+        self.a = ask_number()
 
-        for xi, yi in zip(x, y):
-            numerator = 1
-            denominator = 1
+        self.complete_practice()
 
-            for xj in x:
+    def calculate_polynomial_at_given_point(self, a):
+        polynomial = 0
+
+        for xi in self.x:
+            polynomial_coefficient = 1
+            for xj in self.x:
                 if xj != xi:
-                    numerator *= (x_number - xj)
-                    denominator *= (xi - xj)
+                    polynomial_coefficient *= (a - xj) / (xi - xj)
 
-            polynomial_coefficient = numerator / denominator
-            polynom += polynomial_coefficient * yi
+            polynomial += polynomial_coefficient * self.calculate_y_value(xi)
 
-        return polynom
+        return polynomial
 
     def calculate_y_value(self, x):
         return math.log(math.pow(x, (self.pow_numerator / self.pow_denominator)))
+
+    def complete_practice(self):
+        polynomial_value_at_point = self.calculate_polynomial_at_given_point(self.a)
+        print(f"Value of f(x) at the {self.a} calculated using Lagrange polynomial = {polynomial_value_at_point}")
