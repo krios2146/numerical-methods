@@ -46,7 +46,7 @@ class Practice7To8:
         return polynomial
 
     def calculate_y_value_at_given_point(self, point):
-        return math.log(math.pow(point, (self.pow_numerator / self.pow_denominator)))
+        return math.pow(math.log(point), (self.pow_numerator / self.pow_denominator))
 
     def calculate_absolute_error_at_given_point(self, point):
         polynomial_value = self.calculate_polynomial_at_given_point(point)
