@@ -1,5 +1,7 @@
 import math
 
+from sympy import Symbol, diff, log
+
 from util.input import ask_number, ask_comma_separated_list_of_numbers
 
 
@@ -28,18 +30,16 @@ class Practice2To4:
         root, iterations = self.bisection_method()
         print(f"Approximate solution by the bisection method with {iterations} iterations = {root}")
 
-    def calculate_y_value_at_given_point(self, x):
-        return math.log(x) - math.pow(x, 2) + 5
+        root, iterations = self.newthon_raphson_method()
+        print(f"Approximate solution by the Newthon - Raphson method with {iterations} iterations = {root}")
 
+    # TODO: fix method
     def bisection_method(self):
         iterations = 0
         root = 0
 
-        start_root_isolation_boundary = self.root_isolation_boundary[0]
-        end_root_isolation_boundary = self.root_isolation_boundary[-1]
-
-        a = start_root_isolation_boundary
-        b = end_root_isolation_boundary
+        a = self.root_isolation_boundary[0]
+        b = self.root_isolation_boundary[-1]
 
         while abs(a - b) >= self.calculation_accuracy:
             value_at_a = self.calculate_y_value_at_given_point(a)
@@ -59,6 +59,36 @@ class Practice2To4:
             root = value_at_middle_point
 
         return root, iterations
+
+    def newthon_raphson_method(self):
+        start_isolation_boundary = self.root_isolation_boundary[0]
+        end_isolation_boundary = self.root_isolation_boundary[-1]
+
+        x = Symbol("x")
+        function = log(x) - (x ** 2) + 5
+        derivative = diff(function, x)
+        second_derivative = diff(function, x, 2)
+
+        function_value = self.calculate_y_value_at_given_point(start_isolation_boundary)
+        derivative_value = second_derivative.evalf(subs={x: start_isolation_boundary})
+
+        if function_value * derivative_value > 0:
+            xi = start_isolation_boundary
+        else:
+            xi = end_isolation_boundary
+
+        iterations = 0
+        while True:
+            xj = xi - (self.calculate_y_value_at_given_point(xi) / derivative.evalf(subs={x: xi}))
+            iterations += 1
+
+            if abs(xj - xi) < self.calculation_accuracy:
+                return xj, iterations
+
+            xi = xj
+
+    def calculate_y_value_at_given_point(self, x):
+        return math.log(x) - (x ** 2) + 5
 
     def is_valid_boundaries(self, root_isolation_boundary):
         value_at_start = self.calculate_y_value_at_given_point(root_isolation_boundary[0])
