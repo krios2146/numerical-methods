@@ -1,5 +1,7 @@
 import math
 
+from sympy import Symbol, diff, log
+
 from util.input import *
 
 
@@ -32,6 +34,9 @@ class Practice7To8:
         absolute_error = self.calculate_absolute_error_at_given_point(self.a)
         print(f"Absolute error at the {self.a} = {absolute_error}")
 
+        upper_bound = self.calculate_upper_bound()
+        print(f"Upper bound = {upper_bound}")
+
     def calculate_polynomial_at_given_point(self, point):
         polynomial = 0
 
@@ -53,3 +58,24 @@ class Practice7To8:
         y_value = self.calculate_y_value_at_given_point(point)
 
         return abs(polynomial_value - y_value)
+
+    def calculate_upper_bound(self):
+        x = Symbol("x")
+        function = log(x) ** (self.pow_numerator / self.pow_denominator)
+        derivative = diff(function, x, len(self.x))
+
+        max_value = 0
+        term = 1
+        for xi in self.x:
+            derivative_value = abs(derivative.evalf(subs={x: xi}))
+
+            if derivative_value > max_value:
+                max_value = derivative_value
+
+            term *= (self.a - xi)
+
+        factorial = math.factorial(len(self.x))
+
+        upper_bound = (max_value / factorial) * abs(term)
+
+        return upper_bound
