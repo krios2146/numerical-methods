@@ -1,5 +1,7 @@
 import math
 
+import numpy as np
+from matplotlib import pyplot as plt
 from sympy import Symbol, diff, log
 
 from util.input import *
@@ -36,6 +38,8 @@ class Practice7To8:
 
         upper_bound = self.calculate_upper_bound()
         print(f"Upper bound = {upper_bound}")
+
+        self.draw_function_plot()
 
     def calculate_polynomial_at_given_point(self, point):
         polynomial = 0
@@ -79,3 +83,15 @@ class Practice7To8:
         upper_bound = (max_value / factorial) * abs(term)
 
         return upper_bound
+
+    def draw_function_plot(self):
+        x_values = np.linspace(self.x[0], self.x[-1], 100)
+
+        y_function = [self.calculate_y_value_at_given_point(xi) for xi in x_values]
+        y_polynomial = [self.calculate_polynomial_at_given_point(xi) for xi in x_values]
+
+        plt.plot(x_values, y_function, label="f(x)")
+        plt.plot(x_values, y_polynomial, label="g(x)")
+        plt.legend()
+
+        plt.show()
