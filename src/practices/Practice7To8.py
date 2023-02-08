@@ -14,17 +14,17 @@ class Practice7To8:
     a = 0
 
     def initiate_practice(self):
-        print("Enter the numerator of a degree: ")
+        print("Enter the numerator of a degree: ", end="")
         self.pow_numerator = ask_number()
 
-        print("Enter the denominator of a degree: ")
+        print("Enter the denominator of a degree: ", end="")
         self.pow_denominator = ask_number()
 
-        print("Enter the x values separated by comma: ")
+        print("Enter the x values separated by comma: ", end="")
         self.x = ask_comma_separated_list_of_numbers()
 
         # TODO: a should be in range of interpolation
-        print("Enter the a value: ")
+        print("Enter the a value: ", end="")
         self.a = ask_number()
 
         self.complete_practice()
