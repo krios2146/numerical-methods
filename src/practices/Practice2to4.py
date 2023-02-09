@@ -30,10 +30,12 @@ class Practice2To4:
         root, iterations = self.bisection_method()
         print(f"Approximate solution by the bisection method with {iterations} iterations = {root}")
 
+        root, iterations = self.simple_iterations_method()
+        print(f"Approximate solution by the simple iterations method with {iterations} iterations = {root}")
+
         root, iterations = self.newthon_raphson_method()
         print(f"Approximate solution by the Newthon-Raphson method with {iterations} iterations = {root}")
 
-    # TODO: fix accuracy
     def bisection_method(self):
         iterations = 0
         root = 0
@@ -57,9 +59,25 @@ class Practice2To4:
             iterations += 1
             root = middle_point
 
-        return root, iterations
+    def simple_iterations_method(self):
+        x = Symbol("x")
+        function = log(x) - (x ** 2) + 5
+        derivative = diff(function, x)
 
-    # TODO: fix accuracy
+        xi = (self.root_isolation_boundary[0] + self.root_isolation_boundary[-1]) / 2
+        m = 1.01 * derivative.evalf(subs={x: xi})
+
+        iterations = 0
+        while True:
+            xj = xi - (self.calculate_y_value_at_given_point(xi) / m)
+            iterations += 1
+
+            if abs(xj - xi) < self.calculation_accuracy and \
+                    self.calculate_y_value_at_given_point(xj) <= self.calculation_accuracy:
+                return xj, iterations
+
+            xi = xj
+
     def newthon_raphson_method(self):
         start_isolation_boundary = self.root_isolation_boundary[0]
         end_isolation_boundary = self.root_isolation_boundary[-1]
