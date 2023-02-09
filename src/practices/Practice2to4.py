@@ -36,6 +36,9 @@ class Practice2To4:
         root, iterations = self.newthon_raphson_method()
         print(f"Approximate solution by the Newthon-Raphson method with {iterations} iterations = {root}")
 
+        root, iterations = self.secant_method()
+        print(f"Approximate solution by the secant method with {iterations} iterations = {root}")
+
     def bisection_method(self):
         a = self.root_isolation_boundary[0]
         b = self.root_isolation_boundary[-1]
@@ -104,6 +107,36 @@ class Practice2To4:
                 return xj, iterations
 
             xi = xj
+
+    def secant_method(self):
+        start_isolation_boundary = self.root_isolation_boundary[0]
+        end_isolation_boundary = self.root_isolation_boundary[-1]
+
+        x = Symbol("x")
+        function = log(x) - (x ** 2) + 5
+        second_derivative = diff(function, x, 2)
+
+        function_value = self.calculate_y_value_at_given_point(start_isolation_boundary)
+        derivative_value = second_derivative.evalf(subs={x: start_isolation_boundary})
+
+        if function_value * derivative_value > 0:
+            xi = start_isolation_boundary
+            xj = end_isolation_boundary
+        else:
+            xi = end_isolation_boundary
+            xj = start_isolation_boundary
+
+        iterations = 0
+        while True:
+            xk = xj - ((xj - xi) * self.calculate_y_value_at_given_point(xj) / (
+                    self.calculate_y_value_at_given_point(xj) - self.calculate_y_value_at_given_point(xi)))
+            iterations += 1
+
+            if abs(xk - xj) < self.calculation_accuracy:
+                return xk, iterations
+
+            xi = xj
+            xj = xk
 
     def calculate_y_value_at_given_point(self, x):
         return math.log(x) - (x ** 2) + 5
