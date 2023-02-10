@@ -34,7 +34,7 @@ class Practice2To4:
         print(f"Approximate solution by the simple iterations method with {iterations} iterations = {root}")
 
         root, iterations = self.newthon_raphson_method()
-        print(f"Approximate solution by the Newthon-Raphson method with {iterations} iterations = {root}")
+        print(f"Approximate solution by the Newton-Raphson method with {iterations} iterations = {root}")
 
         root, iterations = self.secant_method()
         print(f"Approximate solution by the secant method with {iterations} iterations = {root}")
