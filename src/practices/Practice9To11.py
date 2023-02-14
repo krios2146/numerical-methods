@@ -43,11 +43,13 @@ class Practice9To11:
 
         return root
 
-        print(xi)
-        print(yi)
+    def calculate_y_values_at_given_points(self, x_points):
+        y_values = []
 
-    def calculate_y_value_at_given_point(self, point):
-        return math.pow(math.log(point), (self.pow_numerator / self.pow_denominator))
+        for x in x_points:
+            y_values.append(math.pow(math.log(x), (self.pow_numerator / self.pow_denominator)))
+
+        return y_values
 
     def calculate_cotes_coefficient(self, a, b, iteration):
         c_1_0, c_1_1 = (b - a) / 2
