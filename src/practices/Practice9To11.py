@@ -27,7 +27,17 @@ class Practice9To11:
         self.complete_practice()
 
     def complete_practice(self):
-        self.newton_cotes_method()
+        newton_integral = self.newton_cotes_method()
+        print(f"Integral calculated by Newton-Cotes method = {newton_integral}")
+
+        rectangle_integral = self.newton_cotes_method()
+        print(f"Integral calculated by rectangle method = {rectangle_integral}")
+
+        trapezoidal_integral = self.newton_cotes_method()
+        print(f"Integral calculated by trapezoidal method = {trapezoidal_integral}")
+
+        simpson_integral = self.newton_cotes_method()
+        print(f"Integral calculated by trapezoidal method = {simpson_integral}")
 
     def newton_cotes_method(self):
         x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
