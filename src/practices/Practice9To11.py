@@ -30,14 +30,14 @@ class Practice9To11:
         newton_integral = self.newton_cotes_method()
         print(f"Integral calculated by Newton-Cotes method = {newton_integral}")
 
-        rectangle_integral = self.newton_cotes_method()
+        rectangle_integral = self.rectangle_method()
         print(f"Integral calculated by rectangle method = {rectangle_integral}")
 
-        trapezoidal_integral = self.newton_cotes_method()
+        trapezoidal_integral = self.trapezoidal_method()
         print(f"Integral calculated by trapezoidal method = {trapezoidal_integral}")
 
-        simpson_integral = self.newton_cotes_method()
-        print(f"Integral calculated by trapezoidal method = {simpson_integral}")
+        simpson_integral = self.simpson_method()
+        print(f"Integral calculated by Simpson method = {simpson_integral}")
 
     def newton_cotes_method(self):
         x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
@@ -65,7 +65,7 @@ class Practice9To11:
         return h * root
 
     def trapezoidal_method(self):
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n))
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n) + 1)
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]
@@ -83,7 +83,7 @@ class Practice9To11:
         if self.n % 2 != 0:
             return None
 
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n))
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n) + 1)
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]

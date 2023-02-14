@@ -39,6 +39,9 @@ class Practice7To8:
         upper_bound = self.calculate_upper_bound()
         print(f"Upper bound = {upper_bound}")
 
+        value_y = self.calculate_y_value_at_given_point(self.a)
+        print(value_y)
+
         self.draw_function_plot()
 
     def calculate_polynomial_at_given_point(self, point):
