@@ -31,11 +31,17 @@ class Practice9To11:
         self.newton_cotes_method()
 
     def newton_cotes_method(self):
-        xi = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
+        y_values = self.calculate_y_values_at_given_points(x_values)
 
-        yi = []
-        for xi in xi:
-            yi.append(self.calculate_y_value_at_given_point(xi))
+        root = 0
+        iteration = 0
+        for y in y_values:
+            cotes_coefficient = self.calculate_cotes_coefficient(iteration)
+            root += cotes_coefficient * y
+            iteration += 1
+
+        return root
 
         print(xi)
         print(yi)
