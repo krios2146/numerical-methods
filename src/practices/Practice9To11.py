@@ -69,6 +69,28 @@ class Practice9To11:
 
         return (h / 2) * root
 
+    def simpson_method(self):
+        if self.n % 2 != 0:
+            return None
+
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n))
+        y_values = self.calculate_y_values_at_given_points(x_values)
+
+        h = x_values[1] - x_values[0]
+
+        root = 0
+        sum_of_even_y_values = 0
+        sum_of_odd_y_values = 0
+        for y in y_values:
+            if y % 2 == 0 and y != y_values[-1]:
+                sum_of_even_y_values += y
+            if y % 2 != 0:
+                sum_of_odd_y_values += y
+            else:
+                root += y
+
+        return (h / 3) * root + (2 * sum_of_even_y_values) + (4 * sum_of_odd_y_values)
+
     def calculate_y_values_at_given_points(self, x_points):
         y_values = []
 
