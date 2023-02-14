@@ -54,6 +54,21 @@ class Practice9To11:
 
         return h * root
 
+    def trapezoidal_method(self):
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n))
+        y_values = self.calculate_y_values_at_given_points(x_values)
+
+        h = x_values[1] - x_values[0]
+
+        root = 0
+        for y in y_values:
+            root += y
+
+            if y != y_values[0] and y != y_values[-1]:
+                root += y
+
+        return (h / 2) * root
+
     def calculate_y_values_at_given_points(self, x_points):
         y_values = []
 
