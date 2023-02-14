@@ -9,7 +9,6 @@ class Practice9To11:
     pow_numerator = 0
     pow_denominator = 0
     root_isolation_boundary = [0]
-    root = 0
     n = 0
 
     def initiate_practice(self):
@@ -42,6 +41,18 @@ class Practice9To11:
             iteration += 1
 
         return root
+
+    def rectangle_method(self):
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n))
+        y_values = self.calculate_y_values_at_given_points(x_values)
+
+        h = x_values[1] - x_values[0]
+
+        root = 0
+        for y in y_values:
+            root += y
+
+        return h * root
 
     def calculate_y_values_at_given_points(self, x_points):
         y_values = []
