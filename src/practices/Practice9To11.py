@@ -51,34 +51,37 @@ class Practice9To11:
 
         return y_values
 
-    def calculate_cotes_coefficient(self, a, b, iteration):
-        c_1_0, c_1_1 = (b - a) / 2
+    def calculate_cotes_coefficient(self, iteration):
+        a = self.root_isolation_boundary[0]
+        b = self.root_isolation_boundary[-1]
+
+        c_1_0 = c_1_1 = (b - a) / 2
         n_1 = [c_1_0, c_1_1]
 
-        c_2_0, c_2_2 = (b - a) / 6
+        c_2_0 = c_2_2 = (b - a) / 6
         c_2_1 = (4 * (b - a)) / 6
         n_2 = [c_2_0, c_2_1, c_2_2]
 
-        c_3_0, c_3_3 = (b - a) / 8
-        c_3_1, c_3_2 = (3 * (b - a)) / 8
+        c_3_0 = c_3_3 = (b - a) / 8
+        c_3_1 = c_3_2 = (3 * (b - a)) / 8
         n_3 = [c_3_0, c_3_1, c_3_2, c_3_3]
 
-        c_4_0, c_4_4 = (7 * (b - a)) / 90
-        c_4_1, c_4_3 = (16 * (b - a)) / 45
+        c_4_0 = c_4_4 = (7 * (b - a)) / 90
+        c_4_1 = c_4_3 = (16 * (b - a)) / 45
         c_4_2 = (2 * (b - a)) / 15
         n_4 = [c_4_0, c_4_1, c_4_2, c_4_3, c_4_4]
 
-        c_5_0, c_5_5 = (19 * (b - a)) / 288
-        c_5_1, c_5_4 = (25 * (b - a)) / 96
-        c_5_2, c_5_3 = (25 * (b - a)) / 144
+        c_5_0 = c_5_5 = (19 * (b - a)) / 288
+        c_5_1 = c_5_4 = (25 * (b - a)) / 96
+        c_5_2 = c_5_3 = (25 * (b - a)) / 144
         n_5 = [c_5_0, c_5_1, c_5_2, c_5_3, c_5_4, c_5_5]
 
-        c_6_0, c_6_6 = (41 * (b - a)) / 840
-        c_6_1, c_6_5 = (9 * (b - a)) / 35
-        c_6_2, c_6_4 = (9 * (b - a)) / 280
+        c_6_0 = c_6_6 = (41 * (b - a)) / 840
+        c_6_1 = c_6_5 = (9 * (b - a)) / 35
+        c_6_2 = c_6_4 = (9 * (b - a)) / 280
         c_6_3 = (34 * (b - a)) / 105
         n_6 = [c_6_0, c_6_1, c_6_2, c_6_3, c_6_4, c_6_5, c_6_6]
 
         ni = [n_1, n_2, n_3, n_4, n_5, n_6]
 
-        return ni[self.n][iteration]
+        return ni[int(self.n)][iteration]
