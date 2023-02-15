@@ -54,6 +54,7 @@ class Practice9To11:
 
     def rectangle_method(self):
         x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
+        x_values = np.delete(x_values, -1)
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]
