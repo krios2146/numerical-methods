@@ -53,7 +53,7 @@ class Practice9To11:
         return root
 
     def rectangle_method(self):
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n))
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]
@@ -65,7 +65,7 @@ class Practice9To11:
         return h * root
 
     def trapezoidal_method(self):
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n) + 1)
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]
@@ -83,7 +83,7 @@ class Practice9To11:
         if self.n % 2 != 0:
             return None
 
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n) + 1)
+        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]
