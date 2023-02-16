@@ -93,14 +93,14 @@ class Practice9To11:
         sum_of_even_y_values = 0
         sum_of_odd_y_values = 0
         for y in y_values:
-            if y % 2 == 0 and y != y_values[-1]:
+            if y_values.index(y) % 2 == 0 and y != y_values[-1] and y != y_values[0]:
                 sum_of_even_y_values += y
-            if y % 2 != 0:
+            elif y_values.index(y) % 2 != 0:
                 sum_of_odd_y_values += y
             else:
                 integral += y
 
-        return (h / 3) * integral + (2 * sum_of_even_y_values) + (4 * sum_of_odd_y_values)
+        return (h / 3) * (integral + 2 * sum_of_even_y_values + 4 * sum_of_odd_y_values)
 
     def calculate_y_values_at_given_points(self, x_points):
         y_values = []
