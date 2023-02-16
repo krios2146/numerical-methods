@@ -8,7 +8,7 @@ from util.input import ask_comma_separated_list_of_numbers, ask_number
 class Practice9To11:
     pow_numerator = 0
     pow_denominator = 0
-    root_isolation_boundary = [0]
+    limits_of_integral = [0]
     n = 0
 
     def initiate_practice(self):
@@ -18,8 +18,8 @@ class Practice9To11:
         print("Enter the denominator of a degree: ", end="")
         self.pow_denominator = ask_number()
 
-        print("Enter the root isolation boundaries separated by comma: ", end="")
-        self.root_isolation_boundary = ask_comma_separated_list_of_numbers()
+        print("Enter the limits of integral separated by comma: ", end="")
+        self.limits_of_integral = ask_comma_separated_list_of_numbers()
 
         print("Enter the n value: ", end="")
         self.n = ask_number()
@@ -40,7 +40,7 @@ class Practice9To11:
         print(f"Integral calculated by Simpson method = {simpson_integral}")
 
     def newton_cotes_method(self):
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
+        x_values = np.linspace(self.limits_of_integral[0], self.limits_of_integral[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         integral = 0
@@ -53,7 +53,7 @@ class Practice9To11:
         return integral
 
     def rectangle_method(self):
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
+        x_values = np.linspace(self.limits_of_integral[0], self.limits_of_integral[-1], int(self.n + 1))
         x_values = np.delete(x_values, -1)
         y_values = self.calculate_y_values_at_given_points(x_values)
 
@@ -66,7 +66,7 @@ class Practice9To11:
         return h * integral
 
     def trapezoidal_method(self):
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
+        x_values = np.linspace(self.limits_of_integral[0], self.limits_of_integral[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]
@@ -84,7 +84,7 @@ class Practice9To11:
         if self.n % 2 != 0:
             return None
 
-        x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
+        x_values = np.linspace(self.limits_of_integral[0], self.limits_of_integral[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
         h = x_values[1] - x_values[0]
@@ -111,8 +111,8 @@ class Practice9To11:
         return y_values
 
     def calculate_cotes_coefficient(self, iteration):
-        a = self.root_isolation_boundary[0]
-        b = self.root_isolation_boundary[-1]
+        a = self.limits_of_integral[0]
+        b = self.limits_of_integral[-1]
 
         c_1_0 = c_1_1 = (b - a) / 2
         n_1 = [c_1_0, c_1_1]
