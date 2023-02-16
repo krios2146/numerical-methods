@@ -1,6 +1,8 @@
 import math
 
 import numpy as np
+import sympy
+from sympy import Symbol, log
 
 from util.input import ask_comma_separated_list_of_numbers, ask_number
 
@@ -10,6 +12,7 @@ class Practice9To11:
     pow_denominator = 0
     limits_of_integral = [0]
     n = 0
+    newton_leibniz_integral = 0
 
     def initiate_practice(self):
         print("Enter the numerator of a degree: ", end="")
@@ -27,6 +30,9 @@ class Practice9To11:
         self.complete_practice()
 
     def complete_practice(self):
+        self.newton_leibniz_method()
+        print(f"Integral calculated by Newton-Leibniz method = {self.newton_leibniz_integral}")
+
         newton_integral = self.newton_cotes_method()
         print(f"Integral calculated by Newton-Cotes method = {newton_integral}")
 
@@ -38,6 +44,14 @@ class Practice9To11:
 
         simpson_integral = self.simpson_method()
         print(f"Integral calculated by Simpson method = {simpson_integral}")
+
+    def newton_leibniz_method(self):
+        x = Symbol("x")
+        function = log(x) ** (self.pow_numerator / self.pow_denominator)
+        antiderivative = sympy.integrate(function, x)
+        f_a = antiderivative.evalf(subs={x: self.limits_of_integral[0]})
+        f_b = antiderivative.evalf(subs={x: self.limits_of_integral[-1]})
+        self.newton_leibniz_integral = f_b - f_a
 
     def newton_cotes_method(self):
         x_values = np.linspace(self.limits_of_integral[0], self.limits_of_integral[-1], int(self.n + 1))
