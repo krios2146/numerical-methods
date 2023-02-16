@@ -43,14 +43,14 @@ class Practice9To11:
         x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
-        root = 0
+        integral = 0
         iteration = 0
         for y in y_values:
             cotes_coefficient = self.calculate_cotes_coefficient(iteration)
-            root += cotes_coefficient * y
+            integral += cotes_coefficient * y
             iteration += 1
 
-        return root
+        return integral
 
     def rectangle_method(self):
         x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
@@ -59,11 +59,11 @@ class Practice9To11:
 
         h = x_values[1] - x_values[0]
 
-        root = 0
+        integral = 0
         for y in y_values:
-            root += y
+            integral += y
 
-        return h * root
+        return h * integral
 
     def trapezoidal_method(self):
         x_values = np.linspace(self.root_isolation_boundary[0], self.root_isolation_boundary[-1], int(self.n + 1))
@@ -71,14 +71,14 @@ class Practice9To11:
 
         h = x_values[1] - x_values[0]
 
-        root = 0
+        integral = 0
         for y in y_values:
-            root += y
+            integral += y
 
             if y != y_values[0] and y != y_values[-1]:
-                root += y
+                integral += y
 
-        return (h / 2) * root
+        return (h / 2) * integral
 
     def simpson_method(self):
         if self.n % 2 != 0:
@@ -89,7 +89,7 @@ class Practice9To11:
 
         h = x_values[1] - x_values[0]
 
-        root = 0
+        integral = 0
         sum_of_even_y_values = 0
         sum_of_odd_y_values = 0
         for y in y_values:
@@ -98,9 +98,9 @@ class Practice9To11:
             if y % 2 != 0:
                 sum_of_odd_y_values += y
             else:
-                root += y
+                integral += y
 
-        return (h / 3) * root + (2 * sum_of_even_y_values) + (4 * sum_of_odd_y_values)
+        return (h / 3) * integral + (2 * sum_of_even_y_values) + (4 * sum_of_odd_y_values)
 
     def calculate_y_values_at_given_points(self, x_points):
         y_values = []
