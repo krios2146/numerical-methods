@@ -28,16 +28,16 @@ class Practice2To4:
 
     def complete_practice(self):
         root, iterations = self.bisection_method()
-        print(f"Approximate solution by the bisection method with {iterations} iterations = {root}")
+        print(f"Approximate solution by the bisection method            = {root}, iterations = {iterations}")
 
         root, iterations = self.simple_iterations_method()
-        print(f"Approximate solution by the simple iterations method with {iterations} iterations = {root}")
+        print(f"Approximate solution by the simple iterations method    = {root}, iterations = {iterations}")
 
         root, iterations = self.newthon_raphson_method()
-        print(f"Approximate solution by the Newton-Raphson method with {iterations} iterations = {root}")
+        print(f"Approximate solution by the Newton-Raphson method       = {root}, iterations = {iterations}")
 
         root, iterations = self.secant_method()
-        print(f"Approximate solution by the secant method with {iterations} iterations = {root}")
+        print(f"Approximate solution by the secant method               = {root}, iterations = {iterations}")
 
     def bisection_method(self):
         a = self.root_isolation_boundary[0]
@@ -109,22 +109,8 @@ class Practice2To4:
             xi = xj
 
     def secant_method(self):
-        start_isolation_boundary = self.root_isolation_boundary[0]
-        end_isolation_boundary = self.root_isolation_boundary[-1]
-
-        x = Symbol("x")
-        function = log(x) - (x ** 2) + 5
-        second_derivative = diff(function, x, 2)
-
-        function_value = self.calculate_y_value_at_given_point(start_isolation_boundary)
-        derivative_value = second_derivative.evalf(subs={x: start_isolation_boundary})
-
-        if function_value * derivative_value > 0:
-            xi = start_isolation_boundary
-            xj = end_isolation_boundary
-        else:
-            xi = end_isolation_boundary
-            xj = start_isolation_boundary
+        xi = self.root_isolation_boundary[0]
+        xj = self.root_isolation_boundary[-1]
 
         iterations = 0
         while True:
