@@ -29,6 +29,7 @@ class Practice9To11:
 
         self.complete_practice()
 
+    # TODO: add absolute errors in output & format outputs (every values in one column)
     def complete_practice(self):
         self.newton_leibniz_method()
         print(f"Integral calculated by Newton-Leibniz method = {self.newton_leibniz_integral}")
@@ -51,7 +52,8 @@ class Practice9To11:
         antiderivative = sympy.integrate(function, x)
         f_a = antiderivative.evalf(subs={x: self.limits_of_integral[0]})
         f_b = antiderivative.evalf(subs={x: self.limits_of_integral[-1]})
-        self.newton_leibniz_integral = f_b - f_a
+        newton_leibniz_integral = f_b - f_a
+        self.newton_leibniz_integral = newton_leibniz_integral.args[0]
 
     def newton_cotes_method(self):
         x_values = np.linspace(self.limits_of_integral[0], self.limits_of_integral[-1], int(self.n + 1))
@@ -115,6 +117,10 @@ class Practice9To11:
                 integral += y
 
         return (h / 3) * (integral + 2 * sum_of_even_y_values + 4 * sum_of_odd_y_values)
+
+    # TODO: implement & call in every method + add error to return in every method that called it
+    def calculate_absolute_error(self, integral):
+        pass
 
     def calculate_y_values_at_given_points(self, x_points):
         y_values = []
