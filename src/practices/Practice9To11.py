@@ -29,22 +29,33 @@ class Practice9To11:
 
         self.complete_practice()
 
-    # TODO: add absolute errors in output & format outputs (every values in one column)
     def complete_practice(self):
         self.newton_leibniz_method()
-        print(f"Integral calculated by Newton-Leibniz method = {self.newton_leibniz_integral}")
+        print(f"Integral calculated by Newton-Leibniz method      = {self.newton_leibniz_integral}")
 
         newton_integral = self.newton_cotes_method()
-        print(f"Integral calculated by Newton-Cotes method = {newton_integral}")
+        newton_integral_error = self.calculate_absolute_error(newton_integral)
+        print(
+            f"Integral calculated by Newton-Cotes method        = {newton_integral} "
+            f"with absolute error = {newton_integral_error}")
 
         rectangle_integral = self.rectangle_method()
-        print(f"Integral calculated by rectangle method = {rectangle_integral}")
+        rectangle_integral_error = self.calculate_absolute_error(rectangle_integral)
+        print(
+            f"Integral calculated by rectangle method           = {rectangle_integral} "
+            f"with absolute error = {rectangle_integral_error}")
 
         trapezoidal_integral = self.trapezoidal_method()
-        print(f"Integral calculated by trapezoidal method = {trapezoidal_integral}")
+        trapezoidal_integral_error = self.calculate_absolute_error(trapezoidal_integral)
+        print(
+            f"Integral calculated by trapezoidal method         = {trapezoidal_integral} "
+            f"with absolute error = {trapezoidal_integral_error}")
 
         simpson_integral = self.simpson_method()
-        print(f"Integral calculated by Simpson method = {simpson_integral}")
+        simpson_integral_error = self.calculate_absolute_error(simpson_integral)
+        print(
+            f"Integral calculated by Simpson method             = {simpson_integral} "
+            f"with absolute error = {simpson_integral_error}")
 
     def newton_leibniz_method(self):
         x = Symbol("x")
@@ -118,9 +129,8 @@ class Practice9To11:
 
         return (h / 3) * (integral + 2 * sum_of_even_y_values + 4 * sum_of_odd_y_values)
 
-    # TODO: implement & call in every method + add error to return in every method that called it
     def calculate_absolute_error(self, integral):
-        pass
+        return abs(self.newton_leibniz_integral - integral)
 
     def calculate_y_values_at_given_points(self, x_points):
         y_values = []
