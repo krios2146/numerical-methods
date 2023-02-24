@@ -1,4 +1,5 @@
 from practices.Practice2to4 import Practice2To4
+from practices.Practice5 import Practice5
 from practices.Practice7To8 import Practice7To8
 from practices.Practice9To11 import Practice9To11
 
@@ -27,6 +28,10 @@ def init_app():
     if answer == "1":
         practices_2_to_4 = Practice2To4()
         practices_2_to_4.initiate_practice()
+
+    if answer == "2":
+        practices_5 = Practice5()
+        practices_5.initiate_practice()
 
     if answer == "4":
         practices_7_to_8 = Practice7To8()
