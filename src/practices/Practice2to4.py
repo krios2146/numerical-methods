@@ -68,7 +68,7 @@ class Practice2To4:
         derivative = diff(function, x)
 
         xi = (self.root_isolation_boundary[0] + self.root_isolation_boundary[-1]) / 2
-        m = 1.01 * derivative.evalf(subs={x: xi})
+        m = derivative.evalf(subs={x: xi})
 
         iterations = 0
         while True:
