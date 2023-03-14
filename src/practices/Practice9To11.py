@@ -54,11 +54,14 @@ class Practice9To11:
             f"Integral calculated by trapezoidal method         = {trapezoidal_integral} "
             f"with absolute error = {trapezoidal_integral_error}")
 
-        simpson_integral = self.simpson_method()
-        simpson_integral_error = self.calculate_absolute_error(simpson_integral)
-        print(
-            f"Integral calculated by Simpson method             = {simpson_integral} "
-            f"with absolute error = {simpson_integral_error}")
+        if self.n % 2 != 0:
+            print(f"Integral cannot be calculated by the Simpson method, {self.n} is not odd")
+        else:
+            simpson_integral = self.simpson_method()
+            simpson_integral_error = self.calculate_absolute_error(simpson_integral)
+            print(
+                f"Integral calculated by Simpson method             = {simpson_integral} "
+                f"with absolute error = {simpson_integral_error}")
 
     def newton_leibniz_method(self):
         x = Symbol("x")
@@ -111,9 +114,6 @@ class Practice9To11:
         return (h / 2) * integral
 
     def simpson_method(self):
-        if self.n % 2 != 0:
-            return None
-
         x_values = np.linspace(self.limits_of_integral[0], self.limits_of_integral[-1], int(self.n + 1))
         y_values = self.calculate_y_values_at_given_points(x_values)
 
