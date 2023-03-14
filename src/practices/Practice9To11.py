@@ -173,4 +173,4 @@ class Practice9To11:
 
         ni = [n_1, n_2, n_3, n_4, n_5, n_6]
 
-        return ni[int(self.n)][iteration]
+        return ni[int(self.n - 1)][iteration]
