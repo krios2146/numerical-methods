@@ -33,11 +33,14 @@ class Practice9To11:
         self.newton_leibniz_method()
         print(f"Integral calculated by Newton-Leibniz method      = {self.newton_leibniz_integral}")
 
-        newton_integral = self.newton_cotes_method()
-        newton_integral_error = self.calculate_absolute_error(newton_integral)
-        print(
-            f"Integral calculated by Newton-Cotes method        = {newton_integral} "
-            f"with absolute error = {newton_integral_error}")
+        if self.n > 6:
+            print("Integral cannot be calculated by the Newton-Cotes method")
+        else:
+            newton_integral = self.newton_cotes_method()
+            newton_integral_error = self.calculate_absolute_error(newton_integral)
+            print(
+                f"Integral calculated by Newton-Cotes method        = {newton_integral} "
+                f"with absolute error = {newton_integral_error}")
 
         rectangle_integral = self.rectangle_method()
         rectangle_integral_error = self.calculate_absolute_error(rectangle_integral)
